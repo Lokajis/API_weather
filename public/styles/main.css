@@ -1,0 +1,28 @@
+body {
+    background-color:
+        gray;
+}
+
+.container {
+    height: 100vh;
+    display: grid;
+
+    grid-template-columns: 1fr;
+    grid-row: 1fr 1fr 1fr;
+    gap: 20px;
+
+}
+
+.containerParts {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.responce {
+    height: 60%;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-row: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+
+}
