@@ -7,6 +7,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CapstoneProject_4</title>
     <link rel="stylesheet" href="/styles/main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300&display=swap" rel="stylesheet">
 </head>
 
 <body>
@@ -16,26 +19,27 @@
     <div class="container">
 
 
-        <div class="title containerParts">
-            <h1>
+        <div class="containerParts">
+            <h1 id="h1">
                 <%= content %>
             </h1>
+
         </div>
 
 
 
 
-        <div id="question" class="containerParts">
+        <div id="question" class="containerParts ">
 
 
 
-            <form id="myForm" method="post">
+            <form id="myForm" method="post" class=" <% if (locals.hidden) {%> <%= hidden %>  <% } %> marginBottom">
 
                 <label for="lat">Your latitude</label>
-                <input type="number" id="idLat" name="lat" step=".01">
+                <input type="number" name="lat" step=".01">
 
                 <label for="lon">Your longitude</label>
-                <input type="number" id="idLon" name="lon" step=".01">
+                <input type="number" name="lon" step=".01">
 
 
 
@@ -49,47 +53,67 @@
 
 
 
+            <div id="results" class="containerParts">
 
+                <div class="allign">
+                    <div>
+                        <p>desctiption: <%= wDescription %>
+                        </p>
 
-            <div class=" containerParts" id="answer">
-                <div class="responce ">
+                    </div>
+                    <div>
+                        <p>tempereture: <%=wTemp %> C</p>
+                    </div>
+                    <div>
+                        <p>feels like: <%=locals.wFeels_like %> C</p>
+                    </div>
+                    <div>
+                        <p>min temperature: <%=wTemp_min %> C</p>
+                    </div>
+                    <div>
+                        <p>max temperature:<%=wTemp_max %> C</p>
+                    </div>
+                    <div>
+                        <p>atmospherick pressure: <%=wPressure %>
+                        </p>
+                    </div>
+                    <div>
+                        <p>humidity levels: <%= wHumidity%>
+                        </p>
 
-                    <div>
-                        <label for="wDescription">It will </label>
-                        <%= wDescription %>
                     </div>
-                    <div>
-                        <label for="wTemp">Temperature: </label>
-                        <%=wTemp %>
-                    </div>
-                    <div>
-                        <label for="wFeels_like">Feels like: </label>
-                        <%=locals.wFeels_like %>
-                    </div>
-                    <div>
-                        <label for="wTemp_min">Min temperature: </label>
-                        <%=wTemp_min %>
-                    </div>
-                    <div>
-                        <label for="wTemp_max">Max temperature: </label>
-                        <%=wTemp_max %>
-                    </div>
-                    <div>
-                        <label for="wPressure">Atmosphere pressure: </label>
-                        <%=wPressure %>
-                    </div>
-                    <div>
-                        <label for="wHumidity">Humidity: </label>
-                        <%= wHumidity%>
-                    </div>
-
 
                 </div>
             </div>
-            <% } %>
+
+
+            <div>
+                <button id="bt" class="">Reset</button>
+            </div>
 
     </div>
 
+
+    <% } %>
+
+        </div>
+        <script>
+
+
+            document.getElementById("get").addEventListener("click", function () { document.getElementById("bt").classList.remove("hidden"); });
+
+            document.getElementById("bt").addEventListener("click", function () {
+                document.getElementById("myForm").classList.remove("hidden");
+                document.getElementById("bt").classList.add("hidden");
+                document.getElementById("h1").innerHTML = "Waiting for data...";
+            });
+
+            document.getElementById("bt").addEventListener("click", function () {
+                document.getElementById("results").classList.add("hidden");
+
+            });
+
+        </script>
 
 </body>
 

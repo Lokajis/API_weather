@@ -12,8 +12,8 @@ const API_key = "18be3f49710edcec33ef7c793fe40686";
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get("/", (req, res) => {
-    let metros = 0;
-    res.render("index.ejs", { content: "Waiting for data...", wMetros: metros });
+    let marginBottom ="marginBottom";
+    res.render("index.ejs", { content: "Waiting for data...", marginBottom: marginBottom });
 });
 
 
@@ -24,6 +24,7 @@ app.post("/", async (req, res) => {
 
 
     try {
+        const hidden = "hidden";
         const result = await axios.get(`https://api.openweathermap.org/data/2.5/weather?lat=${lat1}&lon=${lon1}&appid=${API_key}`);
         let description = result.data.weather[0].description;
         let temp = Math.round(result.data.main.temp - 273.15);
@@ -43,7 +44,7 @@ app.post("/", async (req, res) => {
             wTemp_max: temp_max,
             wPressure: pressure,
             wHumidity: humidity,
-
+            hidden:hidden,
         });
 
     } catch (error) {
@@ -51,7 +52,6 @@ app.post("/", async (req, res) => {
         res.status(500);
 
     }
-
 
 });
 
